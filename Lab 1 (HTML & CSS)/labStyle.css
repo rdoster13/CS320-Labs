@@ -1,0 +1,84 @@
+html{
+  background-color: Azure;
+}
+h1 {
+  font-variant: small-caps;
+  font-size: 40px;
+  color: navy;
+  text-align: center;
+  border-top: medium solid navy;
+  border-bottom: medium solid navy;
+}
+.section {
+  float: left;
+  width: 540px;
+  clear: left;
+  margin-bottom: 10px;
+}
+.section h3{
+  border-bottom: thin solid navy;
+  color: navy;
+  font-size: 20px;
+}
+.section.objective{
+  background-color: Sienna;
+}
+.section.education{
+  background-color: salmon;
+}
+.section.experience{
+  background-color: RebeccaPurple;
+}
+.section.experience ul{
+  color: white;
+}
+.section.skills{
+  background-color: MediumSeaGreen;
+}
+.section.references{
+  background-color: DodgerBlue;
+}
+p{
+  color: white;
+}
+.sidebar{
+  width: 240px;
+  float: left;
+  border: thin solid navy;
+  margin-bottom: 10px;
+  background-color: red
+}
+.sideHeader{
+  color: navy;
+  border-bottom: 1px solid navy;
+  margin: 20px;
+  font-size: 20px;
+}
+.sideSection h3{
+  color: navy;
+  border-bottom: 1px solid navy;
+  margin: 20px;
+  font-size: 20px;
+}
+.sideTxt{
+  padding-left: 20px;
+  margin-bottom: 0px;
+}
+
+#weddingPhoto img{
+  width: 240px;
+  float: left;
+  margin-bottom: 10px;
+}
+#yodaGif img{
+  width: 240px;
+  float: left;
+  margin-bottom: 10px;
+}
+#bigDiv{
+  float: left;
+  margin-right: 50px;
+}
+#sidebarLine{
+  float: left;
+}

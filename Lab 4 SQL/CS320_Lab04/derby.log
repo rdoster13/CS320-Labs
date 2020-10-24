@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Fri Mar 13 19:14:53 EDT 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0170-d62d-d76d-00000e92d368 
+on database directory C:\CS320\Lab 4 SQL\CS320_Lab04\test.db with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
+Loaded from file:/C:/CS320/Lab%204%20SQL/CS320_Derby/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_241-b07
+user.dir=C:\CS320\Lab 4 SQL\CS320_Lab04
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

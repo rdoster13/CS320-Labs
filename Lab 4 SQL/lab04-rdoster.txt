@@ -1,0 +1,179 @@
+Compose and execute SQL queries that retrieve the following information. For the later queries, you will have to do some research at w3schools in order to learn the proper SQL commands to complete the query. This is intended as an exercise to familiarize you with the w3schools website, as well as reinforce researching for new information on your own.  Each query should be terminated with a semicolon (;).  Make sure to verify that the results of each query are correct by comparing against the database tables themselves.
+
+For each query listed below, copy and paste the following information into your text file:
+
+* The exact query you came up with (including the "SQL>" prompt
+* The exact result of the query (including the last line that starts with "OK").
+
+Copy and paste the final working query and the results of the query from the Eclipse console underneath its respective question below.  I recommend that you develop each query in this document, and then copy and paste it to the "SQL>" prompt in the Eclipse console, and then execute it.  That way, you can easily iterate editing and executing the SQL queries.
+
+NOTE: You may NOT use specific author_id's or book_id's in your queries (except for problems 7 and 9, which specifically state to enter an author_id).  You must join the tables using the method given in the lecture and lab, and demonstrated in class.
+
+NOTE: Look out for the "traps" of not specifying a semi-colon at the end of your SQL statement in SQLDemo, and for having an odd number of single quotes in a query.  Also, you will have to figure out how to specify a single quote as part of a text string, and you will also have to figure out how to insert a new row into a table (hint: w3schools).
+
+NOTE: Rename your submission to lab04-username.txt, replacing "username" with your YCP username, before submitting your lab to Marmoset.
+
+
+1) The title for each book written by Stephen Hawking (I'll give you this one - as an example for your entries).
+SQL> select books.title
+    from books, authors
+    where books.author_id = authors.author_id and
+          authors.lastname = 'Hawking' and authors.firstname = 'Stephen';
+                     TITLE
+--------------------------
+   A Brief History of Time
+The Universe in a Nutshell
+ A Briefer History of Time
+          The Grand Design
+OK (4 rows(s))
+
+
+2) The title and year of publishing for each book written by Douglas Adams
+SQL> select books.title, books.published
+	from books, authors
+	where books.author_id = authors.author_id and
+          authors.lastname = 'Adams' and authors.firstname = 'Douglas';
+                                    TITLE PUBLISHED
+----------------------------------------- ---------
+     The Hitchhiker's Guide to the Galaxy      1979
+The Restaurant at the End of the Universe      1980
+        Life, The Universe and Everything      1982
+     So Long, and Thanks for all the Fish      1984
+OK (4 rows(s))
+
+
+3) The author's name (first and last), the ISBN, and the year published for the book with the title "Something Under the Bed is Drooling"
+SQL> select authors.firstname, authors.lastname, ISBN, published
+	from books, authors
+	where books.author_id = authors.author_id and
+		books.title = 'Something Under the Bed is Drooling';
+FIRSTNAME  LASTNAME          ISBN PUBLISHED
+--------- --------- ------------- ---------
+     Bill Watterson 0-836-21825-6      1988
+OK (1 rows(s))
+
+4) All of the authors for "The Complete Monty Python's Flying Circus; All the Words, Volume 1"
+SQL> select authors.firstname, authors.lastname
+	from books, authors
+	where books.author_id = authors.author_id and
+		books.title = 'The Complete Monty Python''s Flying Circus; All the Words, Volume 1';
+FIRSTNAME LASTNAME
+--------- --------
+   Graham  Chapman
+     John   Cleese
+    Terry  Gilliam
+     Eric     Idle
+    Terry    Jones
+  Michael    Palin
+OK (6 rows(s))
+
+5) The title and author for each of Berkeley Breathed's and Bill Watterson's books, sorted in ascending order by title
+SQL> select books.title, authors.firstname, authors.lastname 
+	from authors, books
+	where books.author_id = authors.author_id and
+	authors.lastname in ('Breathed', 'Watterson') and 
+	authors.firstname in ('Berkeley', 'Bill')
+	order by books.title asc;
+                                                           TITLE FIRSTNAME  LASTNAME
+---------------------------------------------------------------- --------- ---------
+         Attack of the Deranged Mutant Killer Monster Snow Goons      Bill Watterson
+                                               Calvin and Hobbes      Bill Watterson
+                Penguin Dreams and Stranger Things: Bloom County  Berkeley  Breathed
+Scientific Progress Goes 'Boink': A Calvin and Hobbes Collection      Bill Watterson
+                             Something Under the Bed is Drooling      Bill Watterson
+                        Tales Too Ticklish to Tell: Bloom County  Berkeley  Breathed
+OK (6 rows(s))
+
+
+6) The author(s) and title for each book with the word "Time" or "Universe" in the title, sorted in ascending order by lastname, and then ascending by title.
+SQL> select authors.lastname, authors.firstname, books.title
+	from authors, books
+	where books.author_id = authors.author_id and
+	books.title like '%Time%' or 
+	books.title like '%Universe%'
+	order by authors.lastname, books.title;
+ LASTNAME FIRSTNAME                                     TITLE
+--------- --------- -----------------------------------------
+    Adams     Scott         Life, The Universe and Everything
+    Adams   Douglas         Life, The Universe and Everything
+    Adams     Scott The Restaurant at the End of the Universe
+    Adams   Douglas The Restaurant at the End of the Universe
+    Adams     Scott                The Universe in a Nutshell
+    Adams   Douglas                The Universe in a Nutshell
+ Breathed  Berkeley         Life, The Universe and Everything
+ Breathed  Berkeley The Restaurant at the End of the Universe
+ Breathed  Berkeley                The Universe in a Nutshell
+  Chapman    Graham         Life, The Universe and Everything
+  Chapman    Graham The Restaurant at the End of the Universe
+  Chapman    Graham                The Universe in a Nutshell
+   Cleese      John         Life, The Universe and Everything
+   Cleese      John The Restaurant at the End of the Universe
+   Cleese      John                The Universe in a Nutshell
+  Gilliam     Terry         Life, The Universe and Everything
+  Gilliam     Terry The Restaurant at the End of the Universe
+  Gilliam     Terry                The Universe in a Nutshell
+  Hawking   Stephen                   A Brief History of Time
+  Hawking   Stephen                 A Briefer History of Time
+  Hawking   Stephen         Life, The Universe and Everything
+  Hawking   Stephen The Restaurant at the End of the Universe
+  Hawking   Stephen                The Universe in a Nutshell
+     Idle      Eric         Life, The Universe and Everything
+     Idle      Eric The Restaurant at the End of the Universe
+     Idle      Eric                The Universe in a Nutshell
+    Jones     Terry         Life, The Universe and Everything
+    Jones     Terry The Restaurant at the End of the Universe
+    Jones     Terry                The Universe in a Nutshell
+ Kahneman    Daniel         Life, The Universe and Everything
+ Kahneman    Daniel The Restaurant at the End of the Universe
+ Kahneman    Daniel                The Universe in a Nutshell
+ Mlodinow   Leonard                 A Briefer History of Time
+ Mlodinow   Leonard         Life, The Universe and Everything
+ Mlodinow   Leonard The Restaurant at the End of the Universe
+ Mlodinow   Leonard                The Universe in a Nutshell
+   Newton     Isaac         Life, The Universe and Everything
+   Newton     Isaac The Restaurant at the End of the Universe
+   Newton     Isaac                The Universe in a Nutshell
+    Palin   Michael         Life, The Universe and Everything
+    Palin   Michael The Restaurant at the End of the Universe
+    Palin   Michael                The Universe in a Nutshell
+Watterson      Bill         Life, The Universe and Everything
+Watterson      Bill The Restaurant at the End of the Universe
+Watterson      Bill                The Universe in a Nutshell
+OK (45 rows(s))
+
+
+7) Attempt to insert a new book into the books table, with an author_id that does not appear in the authors table (this attempt should fail, due to specifying an invalid foreign key for author_id)
+SQL> INSERT INTO books (AUTHOR_ID, title, isbn, published)
+	values (51, 'I Hate People', '1-536-88705-8', 2020);
+Error: INSERT on table 'BOOKS' caused a violation of foreign key constraint 'SQL200313191214180' for key (51).  The statement has been rolled back.
+SQL> 
+
+
+8) Insert yourself as a new author in the authors table (do not specify an author_id, Derby will do that for you, since author_id is the auto-generated primary key for the authors table)
+SQL> insert into authors (lastname, firstname)
+	values ('Doster', 'Robert');
+OK (0 rows(s))
+
+9) Retrieve the author_id from the authors table for your entry and insert a new book into the books table, using your author_id
+SQL> select author_id
+	from authors
+	where authors.lastname = 'Doster' and authors.firstname = 'Robert';
+AUTHOR_ID
+---------
+       16
+OK (1 rows(s))
+
+SQL> INSERT INTO books (AUTHOR_ID, title, isbn, published)
+	values (16, 'I Hate People', '1-225-51993-8', 2020);
+OK (0 rows(s))
+
+
+10) Now retrieve all of the information for your book (title, ISBN, published, lastname, firstname)
+SQL> select * 
+	from books, authors
+	where authors.author_id = books.author_id and
+		authors.lastname = 'Doster' and authors.firstname = 'Robert';
+BOOK_ID AUTHOR_ID         TITLE          ISBN PUBLISHED AUTHOR_ID LASTNAME FIRSTNAME
+------- --------- ------------- ------------- --------- --------- -------- ---------
+     32        16 I Hate People 1-225-51993-8      2020        16   Doster    Robert
+OK (1 rows(s))
